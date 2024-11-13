@@ -2,11 +2,14 @@
   "name": "gym-check-in-app",
   "version": "1.0.0",
   "description": "Gym Check in APP",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch ./src/server.ts",
     "build": "tsup src --out-dir build",
-    "start": "node build/server.js"
+    "start": "node build/server.js",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "keywords": [],
   "author": "",
@@ -26,7 +29,9 @@
     "tsup": "8.3.5",
     "tsx": "4.19.2",
     "typescript": "5.6.3",
-    "typescript-eslint": "8.14.0"
+    "typescript-eslint": "8.14.0",
+    "vite-tsconfig-paths": "5.1.2",
+    "vitest": "2.1.5"
   },
   "dependencies": {
     "@prisma/client": "5.22.0",

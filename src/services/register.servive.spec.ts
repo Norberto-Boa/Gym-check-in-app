@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { RegisterService } from "./register.service";
 import { PrismaUsersRepository } from "@/repositories/prisma/prisma-users-repository";
 import { compare } from "bcryptjs";
-import { randomUUID } from "crypto";
+import { randomUUID } from "node:crypto";
 
 describe("Register Service", () => {
 	it("Should hash user password upon registartion", async () => {

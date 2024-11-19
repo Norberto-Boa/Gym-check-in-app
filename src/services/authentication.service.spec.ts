@@ -3,11 +3,19 @@ import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-user
 import { AuthenticationService } from "./authentication.service";
 import { hash } from "bcryptjs";
 import { InvalidCredentialsError } from "./Errors/invalid-credentials-error";
+import { beforeEach } from "node:test";
+
+let usersRepository: InMemoryUsersRepository;
+let sut: AuthenticationService;
 
 describe("Authenticate Service", () => {
+  beforeEach(() => {
+    usersRepository = new InMemoryUsersRepository();
+    sut = new AuthenticationService(usersRepository);
+  })
+
   it("Should should be able to authenticate", async () => {
-    const usersRepository = new InMemoryUsersRepository();
-    const sut = new AuthenticationService(usersRepository);
+
 
     await usersRepository.create({
       name: "John Doe",
@@ -24,8 +32,6 @@ describe("Authenticate Service", () => {
   });
 
   it("should not be able to authenticate with an invalid email", () => {
-    const usersRepository = new InMemoryUsersRepository();
-    const sut = new AuthenticationService(usersRepository);
 
     expect(() => sut.execute({
       email: "johndoe@example.com",
@@ -34,8 +40,6 @@ describe("Authenticate Service", () => {
   })
 
   it("should not be able to authenticate with an invalid password", async () => {
-    const usersRepository = new InMemoryUsersRepository();
-    const sut = new AuthenticationService(usersRepository);
 
     await usersRepository.create({
       name: "John Doe",

@@ -10,7 +10,7 @@ Gym Check in APP
 - [ ] User must be able to see the history of the check-ins
 - [ ] User must be able to search for near gyms
 - [ ] User must be able to search for gyms by name 
-- [ ] User must be able to check-in on gyms 
+- [x] User must be able to check-in on gyms 
 - [ ] User must be able to check in
 - [ ] Must be able to register gym
 

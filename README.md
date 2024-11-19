@@ -4,7 +4,7 @@ Gym Check in APP
 
 ## Functional Requirements
 - [x] User must be able to register
-- [ ] User must be able to authenticate
+- [x] User must be able to authenticate
 - [ ] Must be able to get the logged user profile data
 - [ ] Must be able to get the logged user previous check-ins number
 - [ ] User must be able to see the history of the check-ins

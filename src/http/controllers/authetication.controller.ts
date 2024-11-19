@@ -1,8 +1,7 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
-import { PrismaUsersRepository } from "../../repositories/prisma/prisma-users-repository";
-import { AuthenticationService } from "@/services/authentication.service";
 import { InvalidCredentialsError } from "@/services/Errors/invalid-credentials-error";
+import { makeAuthenticationService } from "@/services/factories/make-authentication-service";
 
 export async function authetication(request: FastifyRequest, reply: FastifyReply) {
   const autheticationBodySchema = z.object({
@@ -13,8 +12,7 @@ export async function authetication(request: FastifyRequest, reply: FastifyReply
   const { email, password } = autheticationBodySchema.parse(request.body);
 
   try {
-    const userRepository = new PrismaUsersRepository();
-    const authenticationService = new AuthenticationService(userRepository);
+    const authenticationService = makeAuthenticationService();
     await authenticationService.execute({ email, password });
 
   } catch (err) {

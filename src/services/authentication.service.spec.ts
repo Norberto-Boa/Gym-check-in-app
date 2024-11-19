@@ -1,9 +1,8 @@
-import { describe, it, expect } from "vitest";
-import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-user-repository";
+import { describe, it, expect, beforeEach } from "vitest";
 import { AuthenticationService } from "./authentication.service";
+import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-user-repository";
 import { hash } from "bcryptjs";
 import { InvalidCredentialsError } from "./Errors/invalid-credentials-error";
-import { beforeEach } from "node:test";
 
 let usersRepository: InMemoryUsersRepository;
 let sut: AuthenticationService;
@@ -15,7 +14,6 @@ describe("Authenticate Service", () => {
   })
 
   it("Should should be able to authenticate", async () => {
-
 
     await usersRepository.create({
       name: "John Doe",
@@ -33,7 +31,7 @@ describe("Authenticate Service", () => {
 
   it("should not be able to authenticate with an invalid email", () => {
 
-    expect(() => sut.execute({
+    expect(async () => await sut.execute({
       email: "johndoe@example.com",
       password: "123456"
     })).rejects.toBeInstanceOf(InvalidCredentialsError);

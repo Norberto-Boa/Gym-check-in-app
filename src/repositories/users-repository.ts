@@ -6,4 +6,7 @@ export interface UsersRepository {
 
 	// Find user by email
 	findByEmail(email: string): Promise<User | null>;
+
+	// Find User by Id
+	findById(id: string): Promise<User | null>
 }

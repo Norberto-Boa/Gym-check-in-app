@@ -28,8 +28,8 @@ describe("Authenticate Service", () => {
     expect(user.name).toEqual(createdUser.name);
   });
 
-  it("should throw resource not found if user is invalid", () => {
-    expect(async () => await sut.execute({
+  it("should throw resource not found if user is invalid", async () => {
+    await expect(() => sut.execute({
       userId: "non-existent-user"
     })).rejects.toBeInstanceOf(ResourceNotFound);
   })

@@ -29,9 +29,9 @@ describe("Authenticate Service", () => {
     expect(user.id).toEqual(expect.any(String));
   });
 
-  it("should not be able to authenticate with an invalid email", () => {
+  it("should not be able to authenticate with an invalid email", async () => {
 
-    expect(async () => await sut.execute({
+    await expect(() => sut.execute({
       email: "johndoe@example.com",
       password: "123456"
     })).rejects.toBeInstanceOf(InvalidCredentialsError);
@@ -46,7 +46,7 @@ describe("Authenticate Service", () => {
     })
 
 
-    expect(async () => await sut.execute({
+    await expect(() => sut.execute({
       email: "johndoe@example.com",
       password: "123456"
     })).rejects.toBeInstanceOf(InvalidCredentialsError);

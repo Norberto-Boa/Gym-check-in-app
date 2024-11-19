@@ -16,11 +16,11 @@ Gym Check in APP
 
 ## Business Rules
 - [x] User must not be registered with duplicate email;
-- User cannot make two check-ins on the same day;
-- User cannot make check-in if is in a distance higher than (100m from the gym);
-- Check-in validation must be done within 20 minutes after creation;
-- Check-in must only be validated by admins
-- Check-in can only be registered by admins
+- [x] User cannot make two check-ins on the same day;
+- [x] User cannot make check-in if is in a distance higher than (100m from the gym);
+- [ ] Check-in validation must be done within 20 minutes after creation;
+- [ ] Check-in must only be validated by admins
+- [ ] Check-in can only be registered by admins
 
 ## Non-Functional Requirements
 - [x] Password must be encrypted;

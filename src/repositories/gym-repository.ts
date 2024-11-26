@@ -7,4 +7,7 @@ export interface GymRepository {
 
   // Find User by Id
   findById(id: string): Promise<Gym | null>
+
+  // Find Gym by Name
+  searchMany(query: string, page: number): Promise<Gym[]>
 }

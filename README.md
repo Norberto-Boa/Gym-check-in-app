@@ -8,8 +8,8 @@ Gym Check in APP
 - [x] Must be able to get the logged user profile data
 - [] Must be able to get the logged user previous check-ins number
 - [ ] User must be able to see the history of the check-ins
-- [ ] User must be able to search for near gyms
-- [ ] User must be able to search for gyms by name 
+- [x] User must be able to search for near gyms (less than 10 km distance)
+- [x] User must be able to search for gyms by name 
 - [x] User must be able to check-in on gyms 
 - [ ] User must be able to check in
 - [x] Must be able to register gym

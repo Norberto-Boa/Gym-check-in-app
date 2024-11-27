@@ -7,7 +7,7 @@ interface SearchGymServiceRequest {
 }
 
 interface SearchGymServiceResponse {
-  gym: Gym[];
+  gyms: Gym[];
 }
 
 export class SearchGymService {

@@ -1,10 +1,5 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from "vitest";
-import { CheckInService } from "./check-in.service";
 import { InMemoryCheckInsRepository } from "@/repositories/in-memory/in-memory-check-ins-repository";
-import { InMemoryGymRepository } from "@/repositories/in-memory/in-memory-gym-repository";
-import { Decimal } from "@prisma/client/runtime/library";
-import { MaxDistanceError } from "./Errors/max-distance-error";
-import { MaxNumberOfCheckInsError } from "./Errors/max-number-of-check-ins-error";
 import { ValidateCheckInService } from "./validate-check-in.service";
 import { ResourceNotFound } from "./Errors/resource-not-found";
 import { LateCheckInValidationError } from "./Errors/late-check-in-validation-error";

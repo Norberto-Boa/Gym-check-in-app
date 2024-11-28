@@ -2,7 +2,7 @@ import { Gym, Prisma } from "@prisma/client";
 import { GymRepository, type FindManyNearbyParams } from "../gym-repository";
 import { randomUUID } from "crypto";
 import { Decimal } from '@prisma/client/runtime/library';
-import { getDistanceBetweenCoordinates } from "@/utils/get-distance-between-coordinates";
+import { getDistanceBetweenCoordinates } from "../../utils/get-distance-between-coordinates";
 
 export class InMemoryGymRepository implements GymRepository {
   public items: Gym[] = [];
@@ -13,10 +13,6 @@ export class InMemoryGymRepository implements GymRepository {
         { latitude: params.latitude, longitude: params.longitude },
         { latitude: item.latitude.toNumber(), longitude: item.longitude.toNumber() }
       )
-
-      
-
-      // console.log(distance);
 
       return distance < 10;
     })

@@ -15,8 +15,6 @@ export interface CheckInsRepository {
 
   // Count the number of check-ins of the User
   countByUserId(userId: string): Promise<number>
-  // Find checkIns by User Id
-  findManyByUserId(userId: string, page: number): Promise<CheckIn[]>
 
   // Update a check-in
   save(checkIn: CheckIn): Promise<CheckIn>

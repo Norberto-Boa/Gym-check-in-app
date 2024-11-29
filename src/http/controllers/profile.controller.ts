@@ -11,8 +11,6 @@ export async function profile(request: FastifyRequest, reply: FastifyReply) {
     userId: request.user.sub
   });
 
-
-
   return reply.code(200).send({ ...user, password: undefined });
 
 }

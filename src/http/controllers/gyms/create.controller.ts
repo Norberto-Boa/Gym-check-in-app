@@ -2,8 +2,8 @@ import type { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 import { makeCreateGymService } from "@/services/factories/make-create-gym-service";
 
-export async function register(request: FastifyRequest, reply: FastifyReply) {
-  const registerBodySchema = z.object({
+export async function create(request: FastifyRequest, reply: FastifyReply) {
+  const createBodySchema = z.object({
     name: z.string(),
     email: z.string().email(),
     description: z.string().nullable(),
@@ -16,7 +16,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     }),
   });
 
-  const { name, email, description, phone, latitude, longitude } = registerBodySchema.parse(request.body);
+  const { name, email, description, phone, latitude, longitude } = createBodySchema.parse(request.body);
 
   const createGymService = makeCreateGymService();
   const user = await createGymService.execute({ name, email, description, phone, latitude, longitude });

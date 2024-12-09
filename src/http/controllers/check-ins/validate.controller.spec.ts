@@ -2,6 +2,7 @@ import request from 'supertest';
 import { app } from '@/app';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { createAndAuthenticateUser } from '@/utils/test/create-and-authenticate-user';
+import { prisma } from '@/lib/prisma';
 
 describe('Create Gym (e2e)', () => {
   beforeAll(async () => {
@@ -46,6 +47,13 @@ describe('Create Gym (e2e)', () => {
       .set('Authorization', `Bearer ${token}`)
       .send();
 
+    const checkIn = await prisma.checkIn.findUniqueOrThrow({
+      where: {
+        id: createCheckInResponse.body.id
+      }
+    })
+
     expect(response.statusCode).toEqual(204);
+    expect(checkIn.validated_at).toEqual(expect.any(Date));
   })
 })

@@ -59,22 +59,11 @@ describe('Create Gym (e2e)', () => {
       });
 
     const response = await request(app.server)
-      .get('/check-ins/history')
+      .get('/check-ins/metrics')
       .set('Authorization', `Bearer ${token}`)
       .send();
 
     expect(response.statusCode).toEqual(200);
-    expect(response.body).toHaveLength(3);
-    expect(response.body).toEqual([
-      expect.objectContaining({
-        gym_id: createGymResponse.body.id,
-      }),
-      expect.objectContaining({
-        gym_id: createGymResponse.body.id,
-      }),
-      expect.objectContaining({
-        gym_id: createGymResponse.body.id,
-      }),
-    ])
+    expect(response.body).toEqual(3);
   })
 })

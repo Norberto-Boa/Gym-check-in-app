@@ -1,19 +1,21 @@
 import request from 'supertest';
 import { app } from '@/app';
-import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { createAndAuthenticateUser } from '@/utils/test/create-and-authenticate-user';
 
 describe('Create Gym (e2e)', () => {
   beforeAll(async () => {
+    vi.useFakeTimers();
     await app.ready();
   })
 
   afterAll(async () => {
     await app.close();
+    vi.useRealTimers();
   })
 
 
-  it('should be able to create a check-in', async () => {
+  it('should be able to validate check-Ins', async () => {
     const { token } = await createAndAuthenticateUser(app);
 
     const createGymResponse = await request(app.server)
@@ -28,7 +30,9 @@ describe('Create Gym (e2e)', () => {
         longitude: 32.4353989,
       });
 
-    const response = await request(app.server)
+
+    vi.setSystemTime(new Date(2022, 0, 20, 8, 0, 0))
+    const createCheckInResponse = await request(app.server)
       .post(`/gyms/${createGymResponse.body.id}/checkins`)
       .set('Authorization', `Bearer ${token}`)
       .send({
@@ -36,11 +40,12 @@ describe('Create Gym (e2e)', () => {
         longitude: 32.4353989,
       });
 
-    expect(response.statusCode).toEqual(200);
-    expect(response.body).toEqual(
-      expect.objectContaining({
-        gym_id: createGymResponse.body.id
-      })
-    )
+
+    const response = await request(app.server)
+      .patch(`/check-ins/${createCheckInResponse.body.id}/validate`)
+      .set('Authorization', `Bearer ${token}`)
+      .send();
+
+    expect(response.statusCode).toEqual(204);
   })
 })

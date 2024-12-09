@@ -23,5 +23,5 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
   const createCheckInService = makeCheckInService();
   const { checkIn } = await createCheckInService.execute({ gymId, userId: request.user.sub, userLatitude: latitude, userLongitude: longitude });
 
-  return reply.code(201).send(checkIn);
+  return reply.code(200).send(checkIn);
 }

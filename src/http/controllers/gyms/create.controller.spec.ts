@@ -13,7 +13,7 @@ describe('Create Gym (e2e)', () => {
   })
 
 
-  it('should be able to get user profile from backend', async () => {
+  it('should be able to create gym', async () => {
     const { token } = await createAndAuthenticateUser(app);
 
     const createGymResponse = await request(app.server)

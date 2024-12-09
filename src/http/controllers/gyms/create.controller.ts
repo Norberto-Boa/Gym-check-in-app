@@ -19,7 +19,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
   const { name, email, description, phone, latitude, longitude } = createBodySchema.parse(request.body);
 
   const createGymService = makeCreateGymService();
-  const user = await createGymService.execute({ name, email, description, phone, latitude, longitude });
+  const { gym } = await createGymService.execute({ name, email, description, phone, latitude, longitude });
 
-  return reply.code(201).send(user);
+  return reply.code(201).send(gym);
 }

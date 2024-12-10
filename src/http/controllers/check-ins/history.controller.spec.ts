@@ -3,7 +3,7 @@ import { app } from '@/app';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { createAndAuthenticateUser } from '@/utils/test/create-and-authenticate-user';
 
-describe('Create Gym (e2e)', () => {
+describe('History Check Ins (e2e)', () => {
   beforeAll(async () => {
     vi.useFakeTimers();
     await app.ready();
@@ -16,7 +16,7 @@ describe('Create Gym (e2e)', () => {
 
 
   it('should be able to get check-Ins history', async () => {
-    const { token } = await createAndAuthenticateUser(app);
+    const { token } = await createAndAuthenticateUser(app, true);
 
     const createGymResponse = await request(app.server)
       .post('/gym')

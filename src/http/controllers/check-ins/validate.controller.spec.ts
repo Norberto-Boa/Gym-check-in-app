@@ -17,7 +17,7 @@ describe('Create Gym (e2e)', () => {
 
 
   it('should be able to validate check-Ins', async () => {
-    const { token } = await createAndAuthenticateUser(app);
+    const { token } = await createAndAuthenticateUser(app, true);
 
     const createGymResponse = await request(app.server)
       .post('/gym')

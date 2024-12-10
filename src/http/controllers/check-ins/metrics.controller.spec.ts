@@ -16,7 +16,7 @@ describe('Create Gym (e2e)', () => {
 
 
   it('should be able to get check-Ins history', async () => {
-    const { token } = await createAndAuthenticateUser(app);
+    const { token } = await createAndAuthenticateUser(app, true);
 
     const createGymResponse = await request(app.server)
       .post('/gym')

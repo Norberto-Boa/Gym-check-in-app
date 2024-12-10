@@ -3,31 +3,31 @@ name: Run E2E tests
 on: [pull_request]
 
 jobs:
-  run-e2e-test:
+  run-e2e-tests:
     name: Run E2E Tests
     runs-on: ubuntu-latest
 
     services:
-  postgres:
-    image: bitnami/postgresql:latest
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_PASSWORD=admin
-      - POSTGRES_USER=admin
-      - POSTGRES_DB=gym_check_in
+      postgres:
+        image: bitnami/postgresql
+        ports:
+          - 5432:5432
+        env:
+          POSTGRESQL_PASSWORD: admin
+          POSTGRESQL_USER: admin
+          POSTGRESQL_DATABASE: gym_check_in
 
     steps:
-    -  uses: actions/checkout@v3
-    -  uses: actions/setup-node@v3
-      with:
-        node-version: 18
-        cache: npm
-    - run: npm ci
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+      - run: npm ci
 
-    - run: npm run test:e2e
-      env:
-        JWT_SECRET: testing
-        DATABASE_URL: 
+      - run: npm run test:e2e
+        env:
+          JWT_SECRET: testing
+          DATABASE_URL: "postgresql://admin:admin@localhost:5432/gym_check_in?schema=public"
 
 
